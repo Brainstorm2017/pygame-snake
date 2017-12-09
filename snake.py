@@ -1,7 +1,7 @@
 '''
 Snake game.
 Authors:
-<josh>
+<Josh >
 '''
 
 import pygame
@@ -49,21 +49,14 @@ def get_direction(previous_direction, event_key):
     elif event_key == pygame.K_UP:
         return DIRECTION_UP
     return previous_direction
-    elif event_key == pygame.K_UP:
-        return DIRECTION_DOWN
-    return previous_direction
-    elif event_key == pygame.K_UP:
-        return DIRECTION_RIGHT
-    return previous_direction
 
 def create_food_position():
     """Returns a random 2-tuple in the grid where the food should be located.
     The first element is the x position. Must be an int between 0 and GRID_WIDTH - 1, inclusively.
     The second element is the y position. Must be an int between 0 and GRID_HEIGHT - 1, inclusively.
     """
-    random = (0,-1)
-    return
-
+    food = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT  -1))
+    return food  
 
 def snake_ate_food(snake, food):
     """Returns whether food was eaten by the snake.
@@ -71,6 +64,8 @@ def snake_ate_food(snake, food):
     food - 2-tuple representing the position in the grid of the food
     This function should return True if the head of the snake is in the same position as food.
     """
+    if snake[0] == food: 
+        return True    
     return False
 
 def snake_ran_out_of_bounds(snake):
@@ -78,6 +73,11 @@ def snake_ran_out_of_bounds(snake):
     snake - list of 2-tuples representing the positions of each snake segment
     Note that the grid is GRID_WIDTH cells wide and GRID_HEIGHT cells high.
     """
+    if snake(0,0) in [-1,GRID_WIDTH]:
+        return True
+    return False
+    if snake(0,0) in [-1,GRID_HEIGHT]:
+        return True
     return False
 
 def snake_intersected_body(snake):
@@ -86,7 +86,8 @@ def snake_intersected_body(snake):
     The snake ran into itself if the position of the head is the same as the position
     of any of its body segments.
     """
-    return False
+   # if snake(0,0) in 
+    #return False
 
 def get_score(snake):
     """Returns the current score of the game.
